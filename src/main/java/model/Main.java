@@ -11,7 +11,7 @@ public class Main {
         Jdbi jdbi = Jdbi.create("jdbc:h2:mem:test");
         jdbi.installPlugin(new SqlObjectPlugin());
         try (Handle handle = jdbi.open()) {
-            profiledao dao = handle.attach(profiledao.class);
+            profileDao dao = handle.attach(profileDao.class);
             dao.createTable();
             dao.insertprofile(new profile(1, "teszt"));
             dao.insertprofile(new profile(2, "teszt2"));

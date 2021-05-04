@@ -10,7 +10,7 @@ import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 @RegisterBeanMapper(profile.class)
-public interface profiledao {
+public interface profileDao {
 
     @SqlUpdate("CREATE TABLE profile (id INTEGER PRIMARY KEY, username VARCHAR)")
 
