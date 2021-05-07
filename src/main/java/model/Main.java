@@ -19,5 +19,8 @@ public class Main {
             System.out.println(dao.getprofiles(2).get());
             dao.listprofiles().forEach(System.out::println);
         }
+        mood moods = new mood();
+
+        System.out.println(mood.Mood.HAPPY.toString());
     }
 }
