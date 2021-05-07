@@ -1,13 +1,16 @@
-package model;
-
+import model.mood;
+import model.profile;
+import model.profileDao;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
+import org.tinylog.Logger;
 
 public class Main {
 
     public static void main(String[] args) {
 
+        Logger.info("Teszt");
         Jdbi jdbi = Jdbi.create("jdbc:h2:mem:test");
         jdbi.installPlugin(new SqlObjectPlugin());
         try (Handle handle = jdbi.open()) {
