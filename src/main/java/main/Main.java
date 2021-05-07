@@ -1,3 +1,6 @@
+package main;
+
+import javafx.application.Application;
 import model.mood;
 import model.profile;
 import model.profileDao;
@@ -9,6 +12,8 @@ import org.tinylog.Logger;
 public class Main {
 
     public static void main(String[] args) {
+
+        Application.launch(ApplicationStart.class, args);
 
         Logger.info("Teszt");
         Jdbi jdbi = Jdbi.create("jdbc:h2:mem:test");
@@ -23,7 +28,6 @@ public class Main {
             dao.listprofiles().forEach(System.out::println);
         }
         mood moods = new mood();
-
         System.out.println(mood.Mood.HAPPY.toString());
     }
 }

@@ -33,7 +33,7 @@
         <exec.cleanupDaemonThreads>false</exec.cleanupDaemonThreads>
         <exec.mainClass>swe_project.javafx.Main</exec.mainClass>
         <jackson-databind.version>2.12.1</jackson-databind.version>
-        <mainClass>swe_project.Main</mainClass>
+        <mainClass>swe_project.main.Main</mainClass>
     </properties>
     <dependencies>
         <dependency>
