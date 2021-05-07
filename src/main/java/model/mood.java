@@ -8,7 +8,7 @@ public class mood {
         SAD,
         TIRED,
         HAPPY,
-        EXITED
+        EXCITED
     }
 
 }

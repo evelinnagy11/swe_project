@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="200.0" layoutY="100.0" text="How are you today?">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Button layoutX="50.0" layoutY="200.0" mnemonicParsing="false" text="Angry" />
+      <Button layoutX="150.0" layoutY="200.0" mnemonicParsing="false" text="Sad" />
+      <Button layoutX="250.0" layoutY="200.0" mnemonicParsing="false" text="Tired" />
+      <Button layoutX="350.0" layoutY="200.0" mnemonicParsing="false" text="Happy" />
+      <Button layoutX="450.0" layoutY="200.0" mnemonicParsing="false" text="Excited" />
+   </children>
+</Pane>
