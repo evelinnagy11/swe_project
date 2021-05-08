@@ -1,5 +1,8 @@
 package controller;
 
+import model.profileDao;
+import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.jdbi.v3.core.Handle;
+import org.sqlite.SQLiteDataSource;
 import org.tinylog.Logger;
 
 import java.io.IOException;
@@ -26,6 +31,11 @@ public class loginController {
     private Label errorLabel;
 
     public void loginUser(ActionEvent actionEvent) throws IOException {
+        Jdbi jdbi = Jdbi.create("jdbc:sqlite:profile.db")
+                .installPlugin(new SqlObjectPlugin());
+        Handle handle = jdbi.open();
+        profileDao dao = handle.attach(profileDao.class);
+
         if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty()){
             errorLabel.setText("* Username or password is empty!");
             Logger.error("Username or password is empty!");

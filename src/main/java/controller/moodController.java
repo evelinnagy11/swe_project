@@ -1,8 +1,11 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.mood;
 
 import java.util.Arrays;
@@ -18,6 +21,15 @@ public class moodController {
     @FXML
     private Label usernameLabel;
 
+    @FXML
+    private Button saveButton;
+
+    private void drawMoods() {
+        for (int i = 0; i < 5; i++) {
+                //ImageView view = (ImageView) gameGrid.getChildren().get(i);
+                //view.setImage(moodImages.get(gameState.getTray()[i].getValue()));
+        }
+    }
     public void initdata(String userName) {
         this.username = userName;
         usernameLabel.setText(this.username);
@@ -38,4 +50,12 @@ public class moodController {
 
     }
 
+    public void buttonClick(ActionEvent actionEvent) {
+        //TODO a gomb ertekenek atadasa
+        saveButton.setVisible(true);
+    }
+
+    public void saveMood(ActionEvent actionEvent) {
+
+    }
 }

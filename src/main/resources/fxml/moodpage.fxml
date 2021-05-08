@@ -11,16 +11,16 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <Button layoutX="50.0" layoutY="200.0" mnemonicParsing="false" text="Angry" />
-      <Button layoutX="150.0" layoutY="200.0" mnemonicParsing="false" text="Sad" />
-      <Button layoutX="250.0" layoutY="200.0" mnemonicParsing="false" text="Tired" />
-      <Button layoutX="350.0" layoutY="200.0" mnemonicParsing="false" text="Happy" />
-      <Button layoutX="450.0" layoutY="200.0" mnemonicParsing="false" text="Excited" />
+      <Button layoutX="50.0" layoutY="200.0" mnemonicParsing="false" text="Angry" onAction="#buttonClick"/>
+      <Button layoutX="150.0" layoutY="200.0" mnemonicParsing="false" text="Sad" onAction="#buttonClick"/>
+      <Button layoutX="250.0" layoutY="200.0" mnemonicParsing="false" text="Tired" onAction="#buttonClick"/>
+      <Button layoutX="350.0" layoutY="200.0" mnemonicParsing="false" text="Happy" onAction="#buttonClick"/>
+      <Button layoutX="450.0" layoutY="200.0" mnemonicParsing="false" text="Excited" onAction="#buttonClick"/>
       <Label fx:id="usernameLabel" layoutX="250.0" layoutY="70.0" textAlignment="CENTER">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Button layoutX="270.0" layoutY="300.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="saveButton" layoutX="270.0" layoutY="300.0" mnemonicParsing="false" text="Save" visible="false" onAction="#saveMood"/>
    </children>
 </Pane>
