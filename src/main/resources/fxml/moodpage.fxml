@@ -21,5 +21,6 @@
             <Font size="19.0" />
          </font>
       </Label>
+      <Button layoutX="270.0" layoutY="300.0" mnemonicParsing="false" text="Save" />
    </children>
 </Pane>

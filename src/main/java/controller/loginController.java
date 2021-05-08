@@ -26,9 +26,9 @@ public class loginController {
     private Label errorLabel;
 
     public void loginUser(ActionEvent actionEvent) throws IOException {
-        if (usernameField.getText().isEmpty()){
-            errorLabel.setText("* Username is empty!");
-            Logger.error("Username is empty!");
+        if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty()){
+            errorLabel.setText("* Username or password is empty!");
+            Logger.error("Username or password is empty!");
         } else {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/moodpage.fxml"));
             Parent root = fxmlLoader.load();
@@ -36,7 +36,7 @@ public class loginController {
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
-            Logger.info("{} user is logging in.", usernameField.getText());
+            Logger.info("{} user is logged in.", usernameField.getText());
         }
     }
 }
