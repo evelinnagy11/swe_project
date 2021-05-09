@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +10,7 @@ import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
+@RegisterBeanMapper(mood.class)
 public interface moodDao {
 
     @SqlUpdate("CREATE TABLE if not exists moods (mood_id INTEGER PRIMARY KEY, mood_name VARCHAR, profile_id INTEGER, today_date DATE)")

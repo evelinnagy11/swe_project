@@ -109,6 +109,7 @@ public class moodController {
     }
 
     public void saveMood(ActionEvent actionEvent) throws IOException {
+
         mood.saveMood(clickedmood, username);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/activitiespage.fxml"));

@@ -26,9 +26,9 @@ public class moodHandler {
     public void saveMood(String mood_name, String username){
         int mood_id;
         int profile_id;
-        mood_id = mooddao.listMoods().size() + 1;
-        profile_id = Integer.parseInt(profiledao.getid(username).orElseThrow());
+        //mood_id = mooddao.listMoods().size() + 1;
+        //profile_id = Integer.parseInt(profiledao.getid(username).orElseThrow());
         java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        mooddao.insertMood(mood_id, mood_name, profile_id, date);
+        mooddao.insertMood(2, mood_name, 1, date);
     }
 }
