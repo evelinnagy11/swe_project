@@ -23,9 +23,9 @@ public interface moodDao {
     void insertMood(@BindBean activities activities);
 
     @SqlQuery("SELECT * FROM moods WHERE mood_id = :mood_id")
-    Optional<profile> getMoods(@Bind("mood_id") int mood_id);
+    Optional<mood> getMoods(@Bind("mood_id") int mood_id);
 
     @SqlQuery("SELECT * FROM moods ORDER BY activity_id")
-    List<profile> listMoods();
+    List<mood> listMoods();
 
 }
