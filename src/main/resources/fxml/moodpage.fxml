@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -11,16 +13,45 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <Button layoutX="50.0" layoutY="200.0" mnemonicParsing="false" text="Angry" onAction="#buttonClick"/>
-      <Button layoutX="150.0" layoutY="200.0" mnemonicParsing="false" text="Sad" onAction="#buttonClick"/>
-      <Button layoutX="250.0" layoutY="200.0" mnemonicParsing="false" text="Tired" onAction="#buttonClick"/>
-      <Button layoutX="350.0" layoutY="200.0" mnemonicParsing="false" text="Happy" onAction="#buttonClick"/>
-      <Button layoutX="450.0" layoutY="200.0" mnemonicParsing="false" text="Excited" onAction="#buttonClick"/>
+      <GridPane fx:id="buttonGrid" layoutX="45.0" layoutY="190.0" prefHeight="50.0" prefWidth="510.0">
+         <children>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" layoutY="200.0" onMouseClicked="#buttonClick" GridPane.columnIndex="0">
+               <GridPane.margin>
+                  <Insets left="20.0" right="30.0" />
+               </GridPane.margin></ImageView>
+      <ImageView fitHeight="50.0" fitWidth="65.0" layoutX="150.0" layoutY="200.0" onMouseClicked="#buttonClick" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" right="30.0" />
+               </GridPane.margin></ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="250.0" layoutY="200.0" onMouseClicked="#buttonClick" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets left="20.0" right="30.0" />
+               </GridPane.margin></ImageView>
+      <ImageView fitHeight="50.0" fitWidth="75.0" layoutX="350.0" layoutY="200.0" onMouseClicked="#buttonClick" GridPane.columnIndex="3">
+               <GridPane.margin>
+                  <Insets left="20.0" right="30.0" />
+               </GridPane.margin></ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="450.0" layoutY="200.0" onMouseClicked="#buttonClick" GridPane.columnIndex="4">
+               <GridPane.margin>
+                  <Insets left="20.0" right="30.0" />
+               </GridPane.margin></ImageView>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+      </GridPane>
       <Label fx:id="usernameLabel" layoutX="250.0" layoutY="70.0" textAlignment="CENTER">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Button fx:id="saveButton" layoutX="270.0" layoutY="300.0" mnemonicParsing="false" text="Save" visible="false" onAction="#saveMood"/>
+      <Button fx:id="saveButton" layoutX="270.0" layoutY="300.0" mnemonicParsing="false" onAction="#saveMood" text="Save" visible="false" />
    </children>
 </Pane>

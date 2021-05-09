@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.mood;
 import org.tinylog.Logger;
@@ -31,10 +33,13 @@ public class moodController {
     @FXML
     private Button saveButton;
 
+    @FXML
+    private GridPane buttonGrid;
+
     private void drawMoods() {
         for (int i = 0; i < 5; i++) {
-                //ImageView view = (ImageView) gameGrid.getChildren().get(i);
-                //view.setImage(moodImages.get(gameState.getTray()[i].getValue()));
+                ImageView view = (ImageView) buttonGrid.getChildren().get(i);
+                view.setImage(moodImages.get(i));
         }
     }
     public void initdata(String userName) {
@@ -55,19 +60,23 @@ public class moodController {
                 new Image(getClass().getResource("/pictures/excited.png").toExternalForm())
         );
 
+        drawMoods();
+
     }
 
-    public void buttonClick(ActionEvent actionEvent) {
+    public void buttonClick(MouseEvent mouseEvent) {
         //TODO a gomb ertekenek atadasa
         saveButton.setVisible(true);
     }
 
     public void saveMood(ActionEvent actionEvent) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/activitiespage.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
-        Logger.info("The mood is saved");
+        Logger.info("The mood is saved.");
     }
+
 }

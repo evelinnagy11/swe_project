@@ -31,10 +31,10 @@ public class loginController {
     private Label errorLabel;
 
     public void loginUser(ActionEvent actionEvent) throws IOException {
-        Jdbi jdbi = Jdbi.create("jdbc:sqlite:profile.db")
+        Jdbi jdbi = Jdbi.create("jdbc:sqlite:profiles.db")
                 .installPlugin(new SqlObjectPlugin());
         Handle handle = jdbi.open();
-        profileDao dao = handle.attach(profileDao.class);
+        profileDao profiledao = handle.attach(profileDao.class);
 
         if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty()){
             errorLabel.setText("* Username or password is empty!");
