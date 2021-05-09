@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,15 +13,15 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 @RegisterBeanMapper(mood.class)
 public interface moodDao {
 
-    @SqlUpdate("CREATE TABLE moods (mood_id INTEGER PRIMARY KEY, mood_name VARCHAR, profile_id INTEGER)")
+    @SqlUpdate("CREATE TABLE if not exists moods (mood_id INTEGER PRIMARY KEY, mood_name VARCHAR, profile_id INTEGER, today_date DATE)")
 
     void createTable();
 
-    @SqlUpdate("INSERT INTO moods VALUES (:mood_id, :mood_name, :profile_id)")
-    void insertMood(@Bind("mood_id") int activity_id, @Bind("mood_name") String activity_name, @Bind("profile_id") int profile_id);
+    @SqlUpdate("INSERT INTO moods VALUES (:mood_id, :mood_name, :profile_id, :today_date)")
+    void insertMood(@Bind("mood_id") int mood_id, @Bind("mood_name") String mood_name, @Bind("profile_id") int profile_id, @Bind("today_date") Date today_date);
 
-    @SqlUpdate("INSERT INTO moods VALUES (:mood_id, :mood_name, :profile_id)")
-    void insertMood(@BindBean activities activities);
+    @SqlUpdate("INSERT INTO moods VALUES (:mood_id, :mood_name, :profile_id, :today_date)")
+    void insertMood(@BindBean mood mood);
 
     @SqlQuery("SELECT * FROM moods WHERE mood_id = :mood_id")
     Optional<mood> getMoods(@Bind("mood_id") int mood_id);
