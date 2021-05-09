@@ -17,15 +17,15 @@ public interface moodDao {
     void createTable();
 
     @SqlUpdate("INSERT INTO moods VALUES (:mood_id, :mood_name, :profile_id)")
-    void insertActivity(@Bind("mood_id") int activity_id, @Bind("mood_name") String activity_name, @Bind("profile_id") int profile_id);
+    void insertMood(@Bind("mood_id") int activity_id, @Bind("mood_name") String activity_name, @Bind("profile_id") int profile_id);
 
-    @SqlUpdate("INSERT INTO activities VALUES (:mood_id, :mood_name, :profile_id)")
-    void insertActivity(@BindBean activities activities);
+    @SqlUpdate("INSERT INTO moods VALUES (:mood_id, :mood_name, :profile_id)")
+    void insertMood(@BindBean activities activities);
 
-    @SqlQuery("SELECT * FROM activities WHERE mood_id = :mood_id")
-    Optional<profile> getActivities(@Bind("mood_id") int mood_id);
+    @SqlQuery("SELECT * FROM moods WHERE mood_id = :mood_id")
+    Optional<profile> getMoods(@Bind("mood_id") int mood_id);
 
-    @SqlQuery("SELECT * FROM activities ORDER BY activity_id")
-    List<profile> listActivities();
+    @SqlQuery("SELECT * FROM moods ORDER BY activity_id")
+    List<profile> listMoods();
 
 }
