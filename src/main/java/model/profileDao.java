@@ -12,20 +12,23 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 @RegisterBeanMapper(profile.class)
 public interface profileDao {
 
-    @SqlUpdate("CREATE TABLE if not exists profile (id INTEGER PRIMARY KEY, username VARCHAR)")
+    @SqlUpdate("CREATE TABLE if not exists profiles (id INTEGER PRIMARY KEY, username VARCHAR)")
 
     void createTable();
 
-    @SqlUpdate("INSERT INTO profile VALUES (:id, :username)")
+    @SqlUpdate("INSERT INTO profiles VALUES (:id, :username)")
     void insertprofile(@Bind("id") int id, @Bind("username") String username);
 
-    @SqlUpdate("INSERT INTO profile VALUES (:id, :username)")
+    @SqlUpdate("INSERT INTO profiles VALUES (:id, :username)")
     void insertprofile(@BindBean profile profile);
 
-    @SqlQuery("SELECT * FROM profile WHERE id = :id")
+    @SqlQuery("SELECT * FROM profiles WHERE id = :id")
     Optional<profile> getprofiles(@Bind("id") int id);
 
-    @SqlQuery("SELECT * FROM profile ORDER BY id")
+    @SqlQuery("SELECT id FROM profiles WHERE username = :username")
+    Optional<String> getid(@Bind("username") String username);
+
+    @SqlQuery("SELECT * FROM profiles ORDER BY id")
     List<profile> listprofiles();
 
 }

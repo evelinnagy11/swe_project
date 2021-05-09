@@ -17,11 +17,17 @@ public class profileHandler {
         profiledao.createTable();
     }
 
-    public void CreateProfile(String username){
+    public void createProfile(String username){
         id = profiledao.listprofiles().size() + 1;
         profile newProfile = new profile(id, username);
         profiledao.insertprofile(newProfile);
 
+    }
+
+    public boolean loginProfile(String username){
+        int profile_id = 0;
+            profile_id = Integer.parseInt(profiledao.getid(username).orElseThrow());
+        return true;
     }
 
 }

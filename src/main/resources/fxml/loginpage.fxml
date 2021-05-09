@@ -9,7 +9,7 @@
       <TextField fx:id="usernameField" layoutX="220.0" layoutY="160.0" />
       <PasswordField fx:id="passwordField" layoutX="220.0" layoutY="220.0" />
       <Button fx:id="loginButton" layoutX="150.0" layoutY="300.0" mnemonicParsing="false" onAction="#loginUser" text="Login" textAlignment="CENTER" />
-      <Button fx:id="registrationButton" layoutX="400.0" layoutY="300.0" mnemonicParsing="false" text="Registration" />
+      <Button fx:id="registrationButton" layoutX="400.0" layoutY="300.0" mnemonicParsing="false" text="Registration" onAction="#registrationProfile"/>
       <Label layoutX="265.0" layoutY="100.0" text="Login" textAlignment="CENTER">
          <font>
             <Font size="26.0" />
