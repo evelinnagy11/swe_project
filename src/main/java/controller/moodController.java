@@ -23,7 +23,6 @@ import java.util.List;
 public class moodController {
 
     private String username;
-
     private mood moods;
     private List<Image> moodImages;
 
@@ -35,6 +34,17 @@ public class moodController {
 
     @FXML
     private GridPane buttonGrid;
+
+    @FXML
+    private ImageView angry;
+    @FXML
+    private ImageView sad;
+    @FXML
+    private ImageView tired;
+    @FXML
+    private ImageView happy;
+    @FXML
+    private ImageView excited;
 
 
     private void drawMoods() {
@@ -65,12 +75,6 @@ public class moodController {
 
     }
 
-    public void buttonClick(MouseEvent mouseEvent) {
-        //TODO a gomb ertekenek atadasa
-        Logger.info("The user chose a mood.");
-        saveButton.setVisible(true);
-    }
-
     public void saveMood(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/activitiespage.fxml"));
@@ -81,4 +85,28 @@ public class moodController {
         Logger.info("The mood is saved.");
     }
 
+    public void angryClick(MouseEvent mouseEvent) {
+        Logger.info("The user mood is angry.");
+        saveButton.setVisible(true);
+    }
+
+    public void sadClick(MouseEvent mouseEvent) {
+        Logger.info("The user mood is sad.");
+        saveButton.setVisible(true);
+    }
+
+    public void tiredClick(MouseEvent mouseEvent) {
+        Logger.info("The user mood is tired.");
+        saveButton.setVisible(true);
+    }
+
+    public void happyClick(MouseEvent mouseEvent) {
+        Logger.info("The user mood is happy.");
+        saveButton.setVisible(true);
+    }
+
+    public void excitedClick(MouseEvent mouseEvent) {
+        Logger.info("The user mood is excited.");
+        saveButton.setVisible(true);
+    }
 }
