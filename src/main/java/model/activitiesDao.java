@@ -23,7 +23,7 @@ public interface activitiesDao {
     void insertActivity(@BindBean activities activities);
 
     @SqlQuery("SELECT * FROM activities WHERE activity_id = :activity_id")
-    Optional<profile> getActivities(@Bind("id") int id);
+    Optional<profile> getActivities(@Bind("activity_id") int activity_id);
 
     @SqlQuery("SELECT * FROM activities ORDER BY activity_id")
     List<profile> listActivities();
