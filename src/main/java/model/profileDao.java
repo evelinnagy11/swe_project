@@ -12,7 +12,7 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 @RegisterBeanMapper(profile.class)
 public interface profileDao {
 
-    @SqlUpdate("CREATE TABLE profile (id INTEGER PRIMARY KEY, username VARCHAR)")
+    @SqlUpdate("CREATE TABLE if not exists profile (id INTEGER PRIMARY KEY, username VARCHAR)")
 
     void createTable();
 

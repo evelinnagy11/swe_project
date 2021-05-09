@@ -36,6 +36,7 @@ public class moodController {
     @FXML
     private GridPane buttonGrid;
 
+
     private void drawMoods() {
         for (int i = 0; i < 5; i++) {
                 ImageView view = (ImageView) buttonGrid.getChildren().get(i);

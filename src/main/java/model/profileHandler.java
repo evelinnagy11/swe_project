@@ -10,5 +10,18 @@ public class profileHandler {
     Handle handle = jdbi.open();
     profileDao profiledao = handle.attach(profileDao.class);
 
+    public int id;
+    public profile profile = new profile();
+
+    public profileHandler() {
+        profiledao.createTable();
+    }
+
+    public void CreateProfile(String username){
+        id = profiledao.listprofiles().size() + 1;
+        profile newProfile = new profile(id, username);
+        profiledao.insertprofile(newProfile);
+
+    }
 
 }
