@@ -66,6 +66,7 @@ public class moodController {
 
     public void buttonClick(MouseEvent mouseEvent) {
         //TODO a gomb ertekenek atadasa
+        Logger.info("The user chose a mood.");
         saveButton.setVisible(true);
     }
 

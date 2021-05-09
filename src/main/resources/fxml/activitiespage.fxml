@@ -3,15 +3,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.activitiesController">
    <children>
-      <Button layoutX="400.0" layoutY="20.0" mnemonicParsing="false" text="Add" />
-      <TextField layoutX="200.0" layoutY="20.0" />
+      <Button layoutX="400.0" layoutY="20.0" mnemonicParsing="false" onAction="#addActivity" text="Add" />
+      <TextField fx:id="newActivity" layoutX="200.0" layoutY="20.0" />
       <Label layoutX="70.0" layoutY="25.0" text="Add new activity:" />
-      <ListView layoutX="26.0" layoutY="86.0" prefHeight="300.0" prefWidth="200.0" />
-      <Label layoutX="404.0" layoutY="160.0" text="Label" />
-      <CheckBox layoutX="256.0" layoutY="244.0" mnemonicParsing="false" text="Done!" />
-      <Button layoutX="470.0" layoutY="240.0" mnemonicParsing="false" text="Save" />
+      <ListView fx:id="activeActivities" layoutX="26.0" layoutY="86.0" prefHeight="300.0" prefWidth="200.0" />
+      <Label layoutX="404.0" layoutY="160.0" visible="false" />
+      <CheckBox layoutX="256.0" layoutY="244.0" mnemonicParsing="false" text="Done!" visible="false" />
+      <Button layoutX="470.0" layoutY="240.0" mnemonicParsing="false" text="Save" visible="false" />
+      <Label fx:id="errorLabel" layoutX="200.0" layoutY="50.0" textFill="RED" />
    </children>
 </Pane>
