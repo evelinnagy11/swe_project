@@ -10,7 +10,6 @@ import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
-@RegisterBeanMapper(mood.class)
 public interface moodDao {
 
     @SqlUpdate("CREATE TABLE if not exists moods (mood_id INTEGER PRIMARY KEY, mood_name VARCHAR, profile_id INTEGER, today_date DATE)")
@@ -20,13 +19,10 @@ public interface moodDao {
     @SqlUpdate("INSERT INTO moods VALUES (:mood_id, :mood_name, :profile_id, :today_date)")
     void insertMood(@Bind("mood_id") int mood_id, @Bind("mood_name") String mood_name, @Bind("profile_id") int profile_id, @Bind("today_date") Date today_date);
 
-    @SqlUpdate("INSERT INTO moods VALUES (:mood_id, :mood_name, :profile_id, :today_date)")
-    void insertMood(@BindBean mood mood);
-
     @SqlQuery("SELECT * FROM moods WHERE mood_id = :mood_id")
     Optional<mood> getMoods(@Bind("mood_id") int mood_id);
 
-    @SqlQuery("SELECT * FROM moods ORDER BY activity_id")
+    @SqlQuery("SELECT * FROM moods ORDER BY mood_id")
     List<mood> listMoods();
 
 }

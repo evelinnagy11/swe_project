@@ -18,7 +18,6 @@ public class moodHandler {
 
     public mood mood = new mood();
 
-    moodController cont = new moodController();
 
     public moodHandler(){
         mooddao.createTable();

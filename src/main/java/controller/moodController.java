@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.mood;
+import model.moodHandler;
 import org.tinylog.Logger;
 
 import java.io.IOException;
@@ -25,6 +26,8 @@ public class moodController {
     private String username;
     private mood moods;
     private List<Image> moodImages;
+    moodHandler mood = new moodHandler();
+    private String clickedmood = "";
 
     @FXML
     private Label usernameLabel;
@@ -75,7 +78,38 @@ public class moodController {
 
     }
 
+    public void angryClick(MouseEvent mouseEvent) {
+        clickedmood = "angry";
+        Logger.info("The user mood is angry.");
+        saveButton.setVisible(true);
+    }
+
+    public void sadClick(MouseEvent mouseEvent) {
+        clickedmood = "sad";
+        Logger.info("The user mood is sad.");
+        saveButton.setVisible(true);
+    }
+
+    public void tiredClick(MouseEvent mouseEvent) {
+        clickedmood = "tired";
+        Logger.info("The user mood is tired.");
+        saveButton.setVisible(true);
+    }
+
+    public void happyClick(MouseEvent mouseEvent) {
+        clickedmood = "happy";
+        Logger.info("The user mood is happy.");
+        saveButton.setVisible(true);
+    }
+
+    public void excitedClick(MouseEvent mouseEvent) {
+        clickedmood = "excited";
+        Logger.info("The user mood is excited.");
+        saveButton.setVisible(true);
+    }
+
     public void saveMood(ActionEvent actionEvent) throws IOException {
+        mood.saveMood(clickedmood, username);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/activitiespage.fxml"));
         Parent root = fxmlLoader.load();
@@ -85,28 +119,4 @@ public class moodController {
         Logger.info("The mood is saved.");
     }
 
-    public void angryClick(MouseEvent mouseEvent) {
-        Logger.info("The user mood is angry.");
-        saveButton.setVisible(true);
-    }
-
-    public void sadClick(MouseEvent mouseEvent) {
-        Logger.info("The user mood is sad.");
-        saveButton.setVisible(true);
-    }
-
-    public void tiredClick(MouseEvent mouseEvent) {
-        Logger.info("The user mood is tired.");
-        saveButton.setVisible(true);
-    }
-
-    public void happyClick(MouseEvent mouseEvent) {
-        Logger.info("The user mood is happy.");
-        saveButton.setVisible(true);
-    }
-
-    public void excitedClick(MouseEvent mouseEvent) {
-        Logger.info("The user mood is excited.");
-        saveButton.setVisible(true);
-    }
 }
