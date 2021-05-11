@@ -31,4 +31,9 @@ public interface activitiesDao {
     @SqlQuery("SELECT activity_name FROM activities WHERE profile_id = :profile_id ORDER BY activity_id")
     List<String> listActivitiesbyprofile(@Bind("profile_id") int profile_id);
 
+    @SqlUpdate("DELETE FROM activities WHERE activity_id = :activity_id, profile_id = :profile_id")
+    void deleteActivities(@Bind("activity_id") int activity_id, @Bind("profile_id") int profile_id);
+
+    @SqlQuery("SELECT activity_id FROM activities WHERE activity_name = :activity_name")
+    int getActivityIdbyName(@Bind("activity_name") String activity_name);
 }

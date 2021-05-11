@@ -6,8 +6,6 @@ import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
-import java.util.List;
-
 public class activitiesHandler {
     Jdbi jdbi = Jdbi.create("jdbc:sqlite:activities.db")
             .installPlugin(new SqlObjectPlugin());
@@ -32,5 +30,11 @@ public class activitiesHandler {
             activeActivitiesList.add(activitiesdao.listActivitiesbyprofile(profile_id).get(i));
         }
         return activeActivitiesList;
+    }
+
+    public void deleteActivity(String activityname, String username){
+        int profile_id = profilehandler.getUserId(username);
+        int activity_id = activitiesdao.getActivityIdbyName(activityname);
+        activitiesdao.deleteActivities( activity_id, profile_id);
     }
 }

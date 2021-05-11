@@ -1,5 +1,6 @@
 package model;
 
+import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
@@ -9,6 +10,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
+@RegisterBeanMapper(dailyactivity.class)
 public interface dailyactivityDao {
     @SqlUpdate("CREATE TABLE if not exists dailyactivity (daily_id INTEGER PRIMARY KEY, activity_id INTEGER, activity_name VARCHAR, profile_id INTEGER, today DATE)")
 
@@ -28,5 +30,8 @@ public interface dailyactivityDao {
 
     @SqlQuery("SELECT * FROM dailyactivity WHERE profile_id = :profile_id ORDER BY daily_id")
     List<String> listDailyActivitiesbyprofile(@Bind("profile_id") int profile_id);
+
+    @SqlQuery("SELECT activity_id FROM activities WHERE activity_name = :activity_name")
+    int getActivityId(@Bind("activity_name") String activity_name);
 
 }
