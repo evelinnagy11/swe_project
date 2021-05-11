@@ -12,6 +12,10 @@ import java.time.LocalDate;
 @Data
 public class mood {
 
+    public int getMood_id(mood mood) {
+        return mood.mood_id;
+    }
+
     public enum Mood {
 
         ANGRY,
@@ -24,6 +28,6 @@ public class mood {
     private int mood_id;
     private String mood_name;
     private int profile_id;
-    private Date today_date;
+    private long today_date;
 
 }

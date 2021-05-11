@@ -15,19 +15,19 @@ public class Main {
 
         Application.launch(ApplicationStart.class, args);
 
-        Logger.info("Teszt");
+        //Logger.info("Teszt");
         Jdbi jdbi = Jdbi.create("jdbc:h2:mem:test");
         jdbi.installPlugin(new SqlObjectPlugin());
         try (Handle handle = jdbi.open()) {
             profileDao dao = handle.attach(profileDao.class);
             dao.createTable();
-            dao.insertprofile(new profile(1, "teszt"));
-            dao.insertprofile(new profile(2, "teszt2"));
-            dao.insertprofile(new profile(3, "teszt3"));
-            System.out.println(dao.getprofiles(2).get());
+            //dao.insertprofile(new profile(1, "teszt"));
+            //dao.insertprofile(new profile(2, "teszt2"));
+            //dao.insertprofile(new profile(3, "teszt3"));
+            //System.out.println(dao.getprofiles(2).get());
             dao.listprofiles().forEach(System.out::println);
         }
-        mood moods = new mood();
-        System.out.println(mood.Mood.HAPPY.toString());
+        //mood moods = new mood();
+        //System.out.println(mood.Mood.HAPPY.toString());
     }
 }
