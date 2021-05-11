@@ -1,0 +1,32 @@
+package model;
+
+import org.jdbi.v3.sqlobject.customizer.Bind;
+import org.jdbi.v3.sqlobject.customizer.BindBean;
+import org.jdbi.v3.sqlobject.statement.SqlQuery;
+import org.jdbi.v3.sqlobject.statement.SqlUpdate;
+
+import java.sql.Date;
+import java.util.List;
+import java.util.Optional;
+
+public interface dailyactivityDao {
+    @SqlUpdate("CREATE TABLE if not exists dailyactivity (daily_id INTEGER PRIMARY KEY, activity_id INTEGER, activity_name VARCHAR, profile_id INTEGER, today DATE)")
+
+    void createTable();
+
+    @SqlUpdate("INSERT INTO dailyactivity VALUES (:daily_id, :activity_id, :activity_name, :profile_id, :today)")
+    void insertDailyActivity(@Bind("daily_id") int daily_id, @Bind("activity_id") int activity_id, @Bind("activity_name") String activity_name, @Bind("profile_id") int profile_id, @Bind("today") Date today);
+
+    @SqlUpdate("INSERT INTO dailyactivity VALUES (:daily_id, :activity_id, :activity_name, :profile_id, :today)")
+    void insertDailyActivity(@BindBean activities activities);
+
+    @SqlQuery("SELECT * FROM dailyactivity WHERE daily_id = :daily_id")
+    Optional<dailyactivity> getDailyActivities(@Bind("daily_id") int daily_id);
+
+    @SqlQuery("SELECT * FROM dailyactivity ORDER BY daily_id")
+    List<dailyactivity> listDailyActivities();
+
+    @SqlQuery("SELECT * FROM dailyactivity WHERE profile_id = :profile_id ORDER BY daily_id")
+    List<String> listDailyActivitiesbyprofile(@Bind("profile_id") int profile_id);
+
+}
