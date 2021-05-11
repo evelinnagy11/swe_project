@@ -1,10 +1,12 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
-import java.util.Calendar;
+import java.util.List;
 
 public class activitiesHandler {
     Jdbi jdbi = Jdbi.create("jdbc:sqlite:activities.db")
@@ -21,5 +23,14 @@ public class activitiesHandler {
         int profile_id = profilehandler.getUserId(username);
         int activity_id = activitiesdao.listActivities().size() + 1;
         activitiesdao.insertActivity(activity_id, activity_name, profile_id);
+    }
+
+    public ObservableList<String> AddtoList(String username){
+        int profile_id = profilehandler.getUserId(username);
+        ObservableList<String> activeActivitiesList = FXCollections.observableArrayList();
+        for(int i = 0; i < activitiesdao.listActivitiesbyprofile(profile_id).size(); i++){
+            activeActivitiesList.add(activitiesdao.listActivitiesbyprofile(profile_id).get(i));
+        }
+        return activeActivitiesList;
     }
 }

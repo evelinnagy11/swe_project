@@ -12,7 +12,7 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 @RegisterBeanMapper(activities.class)
 public interface activitiesDao {
 
-    @SqlUpdate("CREATE TABLE activities (activity_id INTEGER PRIMARY KEY, activity_name VARCHAR, profile_id INTEGER)")
+    @SqlUpdate("CREATE TABLE if not exists activities (activity_id INTEGER PRIMARY KEY, activity_name VARCHAR, profile_id INTEGER)")
 
     void createTable();
 
@@ -27,5 +27,8 @@ public interface activitiesDao {
 
     @SqlQuery("SELECT * FROM activities ORDER BY activity_id")
     List<activities> listActivities();
+
+    @SqlQuery("SELECT activity_name FROM activities WHERE profile_id = :profile_id ORDER BY activity_id")
+    List<String> listActivitiesbyprofile(@Bind("profile_id") int profile_id);
 
 }
