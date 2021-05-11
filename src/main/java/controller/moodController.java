@@ -101,6 +101,7 @@ public class moodController {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/activitiespage.fxml"));
         Parent root = fxmlLoader.load();
+        fxmlLoader.<activitiesController>getController().initdata(usernameLabel.getText());
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
