@@ -19,7 +19,7 @@ public class activitiesHandler {
 
     public void addActivity(String activity_name, String username){
         int profile_id = profilehandler.getUserId(username);
-        int activity_id = activitiesdao.listActivities().size() + 1;
+        int activity_id = activitiesdao.listActivities().stream().mapToInt(activities::getActivity_id).max().orElseThrow() + 1;
         activitiesdao.insertActivity(activity_id, activity_name, profile_id);
     }
 

@@ -20,7 +20,7 @@ public class profileHandler {
     }
 
     public void createProfile(String username){
-        id = profiledao.listprofiles().size() + 1;
+        id = profiledao.listprofiles().stream().mapToInt(profile::getId).max().orElseThrow() + 1;
         profile newProfile = new profile(id, username);
         profiledao.insertprofile(newProfile);
     }

@@ -18,7 +18,7 @@ public class dailyactivityHandler {
     }
 
     public void doneActivity(String activityname, String username){
-        int daily_id = dailyactivitydao.listDailyActivities().size() + 1;
+        int daily_id = dailyactivitydao.listDailyActivities().stream().mapToInt(dailyactivity::getDaily_id).max().orElseThrow() + 1;
         int activity_id = dailyactivitydao.getActivityId(activityname);
         int profile_id = profilehandler.getUserId(username);
         java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
