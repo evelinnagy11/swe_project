@@ -45,15 +45,10 @@ public class loginController {
             errorLabel.setText("* Wrong username or password!");
             Logger.error("There is no such profile!");
         }
-
-
     }
 
     public void registrationProfile(ActionEvent actionEvent) {
-
         profile.createProfile(usernameField.getText());
-
         Logger.info(usernameField.getText() + " is registered.");
-
     }
 }

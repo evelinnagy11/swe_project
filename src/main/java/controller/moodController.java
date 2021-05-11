@@ -38,17 +38,6 @@ public class moodController {
     @FXML
     private GridPane buttonGrid;
 
-    @FXML
-    private ImageView angry;
-    @FXML
-    private ImageView sad;
-    @FXML
-    private ImageView tired;
-    @FXML
-    private ImageView happy;
-    @FXML
-    private ImageView excited;
-
 
     private void drawMoods() {
         for (int i = 0; i < 5; i++) {
@@ -73,9 +62,7 @@ public class moodController {
                 new Image(getClass().getResource("/pictures/happy.png").toExternalForm()),
                 new Image(getClass().getResource("/pictures/excited.png").toExternalForm())
         );
-
         drawMoods();
-
     }
 
     public void angryClick(MouseEvent mouseEvent) {
@@ -119,5 +106,4 @@ public class moodController {
         stage.show();
         Logger.info("The mood is saved.");
     }
-
 }

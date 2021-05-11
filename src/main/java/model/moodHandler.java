@@ -1,13 +1,10 @@
 package model;
 
-import controller.moodController;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
-import org.tinylog.Logger;
 
 import java.util.Calendar;
-import java.util.Optional;
 
 public class moodHandler {
 
@@ -15,7 +12,6 @@ public class moodHandler {
             .installPlugin(new SqlObjectPlugin());
     Handle handle = jdbi.open();
     moodDao mooddao = handle.attach(moodDao.class);
-    //profileDao profiledao = handle.attach(profileDao.class);
     profileHandler profilehandler = new profileHandler();
 
     public mood mood = new mood();

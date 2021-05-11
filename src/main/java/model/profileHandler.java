@@ -23,7 +23,6 @@ public class profileHandler {
         id = profiledao.listprofiles().size() + 1;
         profile newProfile = new profile(id, username);
         profiledao.insertprofile(newProfile);
-
     }
 
     public boolean loginProfile(String username){
