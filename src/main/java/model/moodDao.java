@@ -26,4 +26,5 @@ public interface moodDao {
     @SqlQuery("SELECT * FROM moods ORDER BY mood_id")
     List<mood> listMoods();
 
+
 }

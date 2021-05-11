@@ -15,7 +15,8 @@ public class moodHandler {
             .installPlugin(new SqlObjectPlugin());
     Handle handle = jdbi.open();
     moodDao mooddao = handle.attach(moodDao.class);
-    profileDao profiledao = handle.attach(profileDao.class);
+    //profileDao profiledao = handle.attach(profileDao.class);
+    profileHandler profilehandler = new profileHandler();
 
     public mood mood = new mood();
 
@@ -24,10 +25,9 @@ public class moodHandler {
     }
 
     public void saveMoods(String mood_name, String username){
-            int profile_id;
             int mood_id =  mooddao.listMoods().stream().mapToInt(mood::getMood_id).max().orElseThrow() + 1;
-            //profile_id = Integer.parseInt(profiledao.getid(username).orElseThrow());
+            int profile_id = profilehandler.getUserId(username);
             java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-            mooddao.insertMood(mood_id, mood_name, 1, date);
+            mooddao.insertMood(mood_id, mood_name, profile_id, date);
     }
 }

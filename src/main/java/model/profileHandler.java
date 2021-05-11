@@ -37,4 +37,9 @@ public class profileHandler {
         return true;
     }
 
+    public int getUserId(String username){
+        int profile_id = Integer.parseInt(profiledao.getid(username).orElseThrow());
+        return profile_id;
+    }
+
 }
