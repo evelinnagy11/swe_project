@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
@@ -27,4 +28,7 @@ public interface moodDao {
 
     @SqlQuery("SELECT MAX(today_date) FROM moods WHERE profile_id = :profile_id")
     long getDate(@Bind("profile_id") int profile_id);
+
+    @SqlQuery("SELECT mood_name, COUNT(*) FROM moods WHERE profile_id = :profile_id GROUP BY mood_name")
+    Map getNumberofMoods(@Bind("profile_id") int profile_id);
 }

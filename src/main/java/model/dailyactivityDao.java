@@ -8,6 +8,7 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RegisterBeanMapper(dailyactivity.class)
@@ -33,5 +34,8 @@ public interface dailyactivityDao {
 
     @SqlQuery("SELECT activity_id FROM activities WHERE activity_name = :activity_name")
     int getActivityId(@Bind("activity_name") String activity_name);
+
+    @SqlQuery("SELECT activity_id, COUNT(*) FROM dailyactivity WHERE profile_id = :profile_id GROUP BY activity_id")
+    Map<Integer,Integer> getNumberofDoneActivities(@Bind("profile_id") int profile_id);
 
 }

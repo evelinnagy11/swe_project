@@ -2,6 +2,7 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
@@ -38,4 +39,5 @@ public class activitiesHandler {
         activitiesdao.deleteActivities( activity_id, profile_id);
         // TODO delete activity from the observable list too
     }
+
 }

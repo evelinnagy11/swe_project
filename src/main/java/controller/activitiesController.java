@@ -103,4 +103,8 @@ public class activitiesController {
         Optional<Pair<String, Boolean>> result = dialog.showAndWait();
     }
 
+    public void fillUpPieChart(String username){
+
+    }
+
 }
