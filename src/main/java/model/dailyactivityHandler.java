@@ -8,6 +8,8 @@ import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -40,5 +42,17 @@ public class dailyactivityHandler {
             //FXCollections.observableArrayList( new PieChart.Data(listofDoneActivities.keySet(),listofDoneActivities.values()));
         }
         return null;
+    }
+
+    public boolean isTodayActivity(int profile_id){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date today = new Date(System.currentTimeMillis());
+        long activity_date = dailyactivitydao.getDate(profile_id);
+        String today_string = formatter.format(today);
+        String activity_date_String = formatter.format(activity_date);
+        if( !today_string.equals(activity_date_String) ){
+            return true;
+        } else {
+            return false; }
     }
 }

@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
 import model.activitiesHandler;
 import model.dailyactivityHandler;
+import model.profileHandler;
 import org.tinylog.Logger;
 
 import java.util.Optional;
@@ -19,6 +20,7 @@ public class activitiesController {
 
     activitiesHandler handler = new activitiesHandler();
     dailyactivityHandler dailyhandler = new dailyactivityHandler();
+    profileHandler profile = new profileHandler();
     private String username;
 
     @FXML
@@ -91,15 +93,23 @@ public class activitiesController {
 
         dialog.getDialogPane().setContent(grid);
 
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == doneButton) {
-                dailyhandler.doneActivity(activeActivities.getSelectionModel().getSelectedItem(), username);
-            }
-            else if(dialogButton == deleteButton){
-                handler.deleteActivity(activeActivities.getSelectionModel().getSelectedItem(), username);
-            }
-            return null;
-        });
+        if (dailyhandler.isTodayActivity(profile.getUserId(usernameLabel.getText()))) {
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == doneButton) {
+                    dailyhandler.doneActivity(activeActivities.getSelectionModel().getSelectedItem(), username);
+                } else if (dialogButton == deleteButton) {
+                    handler.deleteActivity(activeActivities.getSelectionModel().getSelectedItem(), username);
+                }
+                return null;
+            });
+        } else {
+            dialog.setResultConverter(dialogButton -> {
+                if (dialogButton == deleteButton) {
+                    handler.deleteActivity(activeActivities.getSelectionModel().getSelectedItem(), username);
+                }
+                return null;
+            });
+        }
         Optional<Pair<String, Boolean>> result = dialog.showAndWait();
     }
 

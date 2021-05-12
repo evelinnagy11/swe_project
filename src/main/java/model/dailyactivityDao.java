@@ -38,4 +38,6 @@ public interface dailyactivityDao {
     @SqlQuery("SELECT activity_id, COUNT(*) FROM dailyactivity WHERE profile_id = :profile_id GROUP BY activity_id")
     Map<Integer,Integer> getNumberofDoneActivities(@Bind("profile_id") int profile_id);
 
+    @SqlQuery("SELECT MAX(today) FROM dailyactivity WHERE profile_id = :profile_id")
+    long getDate(@Bind("profile_id") int profile_id);
 }
