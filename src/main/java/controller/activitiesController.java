@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -34,6 +35,9 @@ public class activitiesController {
 
     @FXML
     private Label activityName;
+
+    @FXML
+    private PieChart piechart;
 
     public void initdata(String userName) {
         this.username = userName;
@@ -82,10 +86,8 @@ public class activitiesController {
         Label activity = new Label(activeActivities.getSelectionModel().getSelectedItem());
         CheckBox inOut = new CheckBox();
 
-        grid.add(new Label(), 0, 0);
-        grid.add(activity, 1, 0);
-        grid.add(new Label(), 0, 1);
-        grid.add(inOut, 1, 1);
+        grid.add(activity, 0, 0);
+        grid.add(inOut, 1, 0);
 
         dialog.getDialogPane().setContent(grid);
 
@@ -98,9 +100,7 @@ public class activitiesController {
             }
             return null;
         });
-
         Optional<Pair<String, Boolean>> result = dialog.showAndWait();
-        //setOwnCategory(profile_id);
     }
 
 }

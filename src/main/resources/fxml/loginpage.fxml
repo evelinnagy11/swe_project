@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.loginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.loginController">
    <children>
       <TextField fx:id="usernameField" layoutX="220.0" layoutY="160.0" />
       <PasswordField fx:id="passwordField" layoutX="220.0" layoutY="220.0" />
       <Button fx:id="loginButton" layoutX="150.0" layoutY="300.0" mnemonicParsing="false" onAction="#loginUser" text="Login" textAlignment="CENTER" />
-      <Button fx:id="registrationButton" layoutX="400.0" layoutY="300.0" mnemonicParsing="false" text="Registration" onAction="#registrationProfile"/>
-      <Label layoutX="265.0" layoutY="100.0" text="Login" textAlignment="CENTER">
+      <Button fx:id="registrationButton" layoutX="400.0" layoutY="300.0" mnemonicParsing="false" onAction="#registrationProfile" text="Registration" />
+      <Label layoutX="262.0" layoutY="81.0" text="Login" textAlignment="CENTER">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
       <Label fx:id="errorLabel" layoutX="220.0" layoutY="250.0" textFill="RED" />
+      <Label layoutX="220.0" layoutY="138.0" text="Username" />
+      <Label layoutX="220.0" layoutY="200.0" text="Password" />
+      <Label fx:id="registrationLabel" layoutX="220.0" layoutY="259.0" textFill="green"/>
    </children>
 </Pane>

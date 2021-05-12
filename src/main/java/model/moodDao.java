@@ -25,4 +25,6 @@ public interface moodDao {
     @SqlQuery("SELECT * FROM moods ORDER BY mood_id")
     List<mood> listMoods();
 
+    @SqlQuery("SELECT MAX(today_date) FROM moods WHERE profile_id = :profile_id")
+    long getDate(@Bind("profile_id") int profile_id);
 }

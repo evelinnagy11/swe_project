@@ -36,5 +36,6 @@ public class activitiesHandler {
         int profile_id = profilehandler.getUserId(username);
         int activity_id = activitiesdao.getActivityIdbyName(activityname);
         activitiesdao.deleteActivities( activity_id, profile_id);
+        // TODO delete activity from the observable list too
     }
 }
