@@ -35,9 +35,12 @@ public interface dailyactivityDao {
     @SqlQuery("SELECT activity_id FROM activities WHERE activity_name = :activity_name")
     int getActivityId(@Bind("activity_name") String activity_name);
 
-    @SqlQuery("SELECT activity_id, COUNT(*) FROM dailyactivity WHERE profile_id = :profile_id GROUP BY activity_id")
-    Map<Integer,Integer> getNumberofDoneActivities(@Bind("profile_id") int profile_id);
+    @SqlQuery("SELECT activity_name, COUNT(*) FROM dailyactivity WHERE profile_id = :profile_id GROUP BY activity_name")
+    Map<String,Double> getNumberofDoneActivities(@Bind("profile_id") int profile_id);
 
     @SqlQuery("SELECT MAX(today) FROM dailyactivity WHERE profile_id = :profile_id")
     long getDate(@Bind("profile_id") int profile_id);
+
+    @SqlQuery("SELECT activity_name, COUNT(*) FROM dailyactivity WHERE activity_id = :activity_id GROUP BY activity_name")
+    List<String> getActivityNames(@Bind("activity_id") int activity_id);
 }

@@ -30,9 +30,14 @@ public class moodHandler {
     }
 
     public boolean isToday(int profile_id){
+        long mood_date = mooddao.getDate(profile_id);
+        boolean istoday = isTodayDate(mood_date);
+        return istoday;
+    }
+
+    public boolean isTodayDate(long mood_date){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date today = new Date(System.currentTimeMillis());
-        long mood_date = mooddao.getDate(profile_id);
         String today_string = formatter.format(today);
         String mood_date_String = formatter.format(mood_date);
         if( !today_string.equals(mood_date_String) ){

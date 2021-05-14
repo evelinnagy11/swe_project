@@ -4,10 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import model.activitiesHandler;
 import model.dailyactivityHandler;
@@ -45,6 +47,7 @@ public class activitiesController {
         this.username = userName;
         usernameLabel.setText(this.username);
         activeActivities.setItems(handler.AddtoList(usernameLabel.getText()));
+        //fillUpPieChart(username);
     }
 
     public void addActivity(ActionEvent actionEvent) {
@@ -114,7 +117,11 @@ public class activitiesController {
     }
 
     public void fillUpPieChart(String username){
-
+        piechart.setData( dailyhandler.fillPieChart(username));
+        piechart.setTitle("Done Activities");
+        piechart.setClockwise(true);
+        piechart.setLabelLineLength(50);
+        piechart.setLabelsVisible(true);
     }
 
 }

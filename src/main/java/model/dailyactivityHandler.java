@@ -3,17 +3,17 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.scene.chart.PieChart;
+import javafx.scene.layout.VBox;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class dailyactivityHandler {
     Jdbi jdbi = Jdbi.create("jdbc:sqlite:activities.db")
@@ -36,12 +36,24 @@ public class dailyactivityHandler {
 
     public ObservableList<PieChart.Data> fillPieChart(String username){
         int profile_id = profilehandler.getUserId(username);
-        Map<Integer,Integer> listofDoneActivities = dailyactivitydao.getNumberofDoneActivities(profile_id);
-        ObservableList<PieChart.Data> pieChartData;
-        for(int i=0; i<listofDoneActivities.size(); i++) {
-            //FXCollections.observableArrayList( new PieChart.Data(listofDoneActivities.keySet(),listofDoneActivities.values()));
-        }
-        return null;
+        Map<String,Double> doneActivities = new HashMap<>();
+        Map<String, Double> listofDoneActivities = dailyactivitydao.getNumberofDoneActivities(profile_id);
+        /*listofDoneActivities.forEach(action -> {
+            String key = (String) action.get("activity_name");
+            Double value = (Double) action.get("count");
+            doneActivities.put(key, value);
+        });
+
+        for(Map.Entry<String,Double> entry : listofDoneActivities.entrySet()){
+            String name = entry.getKey();
+            Double value = entry.getValue();
+            doneActivities.merge(name, value, Double::sum);
+        }*/
+        ObservableList<PieChart.Data> pieChartData =
+                doneActivities.entrySet().stream()
+                        .map(entry -> new PieChart.Data(entry.getKey(), entry.getValue()))
+                        .collect(Collectors.toCollection(() -> FXCollections.observableArrayList()));
+        return pieChartData;
     }
 
     public boolean isTodayActivity(int profile_id){
