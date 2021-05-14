@@ -1,11 +1,8 @@
 package model;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.scene.chart.PieChart;
-import javafx.scene.layout.VBox;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
@@ -57,9 +54,14 @@ public class dailyactivityHandler {
     }
 
     public boolean isTodayActivity(int profile_id){
+        long activity_date = dailyactivitydao.getDate(profile_id);
+        boolean istoday = isTodayActivityDate(activity_date);
+        return istoday;
+    }
+
+    public boolean isTodayActivityDate(long activity_date){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date today = new Date(System.currentTimeMillis());
-        long activity_date = dailyactivitydao.getDate(profile_id);
         String today_string = formatter.format(today);
         String activity_date_String = formatter.format(activity_date);
         if( !today_string.equals(activity_date_String) ){
