@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 import model.mood;
 import model.moodHandler;
 import org.tinylog.Logger;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 public class moodController {
 
     private String username;
@@ -38,13 +40,13 @@ public class moodController {
     @FXML
     private GridPane buttonGrid;
 
-
     private void drawMoods() {
         for (int i = 0; i < 5; i++) {
                 ImageView view = (ImageView) buttonGrid.getChildren().get(i);
                 view.setImage(moodImages.get(i));
         }
     }
+
     public void initdata(String userName) {
         this.username = userName;
         usernameLabel.setText(this.username);

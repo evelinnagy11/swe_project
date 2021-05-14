@@ -1,3 +1,6 @@
+/**
+ * package info test
+ */
 package main;
 
 import javafx.application.Application;

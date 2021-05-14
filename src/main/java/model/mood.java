@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import javax.persistence.*;
 
+/**
+ * The class represents the moods that the user can choose and save.
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -15,18 +18,26 @@ public class mood {
         return mood.mood_id;
     }
 
-    public enum Mood {
-
-        ANGRY,
-        SAD,
-        TIRED,
-        HAPPY,
-        EXCITED
-    }
-
+    /**
+     * The mood id is generated in the moodHandler class.
+     */
+    @Id
+    @Column(nullable = false)
     private int mood_id;
+
+    /**
+     * The name of the moods.
+     */
     private String mood_name;
+
+    /**
+     * The id of the user, it generated in the profileHandler class.
+     */
     private int profile_id;
+
+    /**
+     * The date of today in long format.
+     */
     private long today_date;
 
 }

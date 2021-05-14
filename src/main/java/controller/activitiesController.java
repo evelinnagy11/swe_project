@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
+import lombok.extern.slf4j.Slf4j;
 import model.activitiesHandler;
 import model.dailyactivityHandler;
 import model.profileHandler;
@@ -16,6 +17,7 @@ import org.tinylog.Logger;
 
 import java.util.Optional;
 
+@Slf4j
 public class activitiesController {
 
     activitiesHandler handler = new activitiesHandler();

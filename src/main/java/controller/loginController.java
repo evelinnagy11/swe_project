@@ -10,12 +10,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 import model.moodHandler;
 import model.profileHandler;
 import org.tinylog.Logger;
 
 import java.io.IOException;
 
+@Slf4j
 public class loginController {
 
     @FXML

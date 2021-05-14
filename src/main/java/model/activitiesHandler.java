@@ -1,3 +1,6 @@
+/**
+ * package info test
+ */
 package model;
 
 import javafx.collections.FXCollections;
@@ -6,6 +9,9 @@ import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
+/**
+ * Test documentation.
+ */
 public class activitiesHandler {
     Jdbi jdbi = Jdbi.create("jdbc:sqlite:activities.db")
             .installPlugin(new SqlObjectPlugin());
