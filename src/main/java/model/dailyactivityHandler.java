@@ -53,8 +53,17 @@ public class dailyactivityHandler {
         return pieChartData;
     }
 
-    public boolean isTodayActivity(int profile_id){
-        long activity_date = dailyactivitydao.getDate(profile_id);
+    public boolean isActivityDone(String activity_name, int profile_id){
+        dailyactivitydao.getListofDates(profile_id);
+        if(isTodayActivity(profile_id, activity_name)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isTodayActivity(int profile_id, String activity_name){
+        long activity_date = dailyactivitydao.getDateByActivity(profile_id, activity_name);
         boolean istoday = isTodayActivityDate(activity_date);
         return istoday;
     }

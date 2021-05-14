@@ -96,7 +96,7 @@ public class activitiesController {
 
         dialog.getDialogPane().setContent(grid);
 
-        if (dailyhandler.isTodayActivity(profile.getUserId(usernameLabel.getText()))) {
+        if (dailyhandler.isActivityDone(activeActivities.getSelectionModel().getSelectedItem() ,profile.getUserId(usernameLabel.getText()))) {
             dialog.setResultConverter(dialogButton -> {
                 if (dialogButton == doneButton) {
                     dailyhandler.doneActivity(activeActivities.getSelectionModel().getSelectedItem(), username);
