@@ -4,12 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import model.activitiesHandler;
 import model.dailyactivityHandler;
@@ -58,6 +56,7 @@ public class activitiesController {
             errorLabel.setText("");
             handler.addActivity(newActivity.getText(), usernameLabel.getText());
             activeActivities.setItems(handler.AddtoList(usernameLabel.getText()));
+            Logger.info("The {} activity is added!", newActivity.getText());
         }
     }
 
@@ -68,6 +67,7 @@ public class activitiesController {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getClickCount() == 2){
+                    Logger.info("{} is selected!", activeActivities.getSelectionModel().getSelectedItem());
                     openActivity(activeActivities.getSelectionModel().getSelectedItem());
                 }
             }
@@ -98,17 +98,26 @@ public class activitiesController {
 
         if (dailyhandler.isActivityDone(activeActivities.getSelectionModel().getSelectedItem() ,profile.getUserId(usernameLabel.getText()))) {
             dialog.setResultConverter(dialogButton -> {
-                if (dialogButton == doneButton) {
+                if (dialogButton == doneButton){
                     dailyhandler.doneActivity(activeActivities.getSelectionModel().getSelectedItem(), username);
-                } else if (dialogButton == deleteButton) {
+                    Logger.info("Activity is saved!");
+                } else if (dialogButton == deleteButton){
                     handler.deleteActivity(activeActivities.getSelectionModel().getSelectedItem(), username);
+                    errorLabel.setText("Activity deleted!");
+                    Logger.info("You deleted the {} activity!", activeActivities.getSelectionModel().getSelectedItem());
                 }
                 return null;
             });
         } else {
             dialog.setResultConverter(dialogButton -> {
-                if (dialogButton == deleteButton) {
+                if (dialogButton == deleteButton){
                     handler.deleteActivity(activeActivities.getSelectionModel().getSelectedItem(), username);
+                    errorLabel.setText("Activity deleted!");
+                    Logger.info("You deleted the {} activity!", activeActivities.getSelectionModel().getSelectedItem());
+                } else if (dialogButton == doneButton){
+                    dialog.getDialogPane().lookupButton(doneButton).disabledProperty();
+                    Logger.error("You have done this activity already!");
+                    errorLabel.setText("You have done this activity already today!");
                 }
                 return null;
             });
