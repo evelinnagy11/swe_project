@@ -40,7 +40,7 @@ public class loginController {
         if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty()){
             errorLabel.setText("* Username or password is empty!");
             Logger.error("Username or password is empty!");
-        } else if (profile.loginProfile(usernameField.getText())){
+        } else if (profile.loginProfile(usernameField.getText(), passwordField.getText())){
             if(mood.isToday(profile.getUserId(usernameField.getText()))){
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/moodpage.fxml"));
                 Parent root = fxmlLoader.load();
@@ -65,7 +65,8 @@ public class loginController {
     }
 
     public void registrationProfile(ActionEvent actionEvent) {
-        profile.createProfile(usernameField.getText());
+        profile.createProfile(usernameField.getText(), passwordField.getText());
+        errorLabel.setText("");
         registrationLabel.setText("Successful registration!");
         Logger.info(usernameField.getText() + " is registered.");
     }

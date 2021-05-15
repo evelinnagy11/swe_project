@@ -38,4 +38,8 @@ public interface moodDao {
     @Transactional
     @SqlQuery("SELECT mood_name, COUNT(*) FROM moods WHERE profile_id = :profile_id GROUP BY mood_name")
     Map getNumberofMoods(@Bind("profile_id") int profile_id);
+
+    @Transactional
+    @SqlQuery("SELECT mood_name FROM moods WHERE profile_id = :profile_id")
+    List<String> getMoodNames(@Bind("profile_id") int profile_id);
 }

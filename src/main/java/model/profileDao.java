@@ -19,8 +19,14 @@ public interface profileDao {
     @SqlUpdate("CREATE TABLE if not exists profiles (id INTEGER PRIMARY KEY, username VARCHAR)")
     void createTable();
 
+    @SqlUpdate("CREATE TABLE if not exists passwords (id INTEGER PRIMARY KEY, password VARCHAR NOT NULL)")
+    void createpasswordTable();
+
     @SqlUpdate("INSERT INTO profiles VALUES (:id, :username)")
     void insertprofile(@Bind("id") int id, @Bind("username") String username);
+
+    @SqlUpdate("INSERT INTO passwords VALUES (:id, :password)")
+    void insertpassword(@Bind("id") int id, @Bind("password") String password);
 
     @SqlUpdate("INSERT INTO profiles VALUES (:id, :username)")
     void insertprofile(@BindBean profile profile);
@@ -28,6 +34,10 @@ public interface profileDao {
     @Transactional
     @SqlQuery("SELECT * FROM profiles WHERE id = :id")
     Optional<profile> getprofiles(@Bind("id") int id);
+
+    @Transactional
+    @SqlQuery("SELECT password FROM passwords WHERE id = :id")
+    String getPassword(@Bind("id") int id);
 
     @Transactional
     @SqlQuery("SELECT id FROM profiles WHERE username = :username")

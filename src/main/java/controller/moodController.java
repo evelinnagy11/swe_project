@@ -12,10 +12,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 import model.mood;
 import model.moodHandler;
+import model.profileHandler;
 import org.tinylog.Logger;
 
 import java.io.IOException;
@@ -29,6 +31,7 @@ public class moodController {
     private mood moods;
     private List<Image> moodImages;
     moodHandler mood = new moodHandler();
+    profileHandler profile = new profileHandler();
     private String clickedmood = "";
 
     @FXML
@@ -40,6 +43,9 @@ public class moodController {
     @FXML
     private GridPane buttonGrid;
 
+    @FXML
+    private Label average_mood;
+
     private void drawMoods() {
         for (int i = 0; i < 5; i++) {
                 ImageView view = (ImageView) buttonGrid.getChildren().get(i);
@@ -50,6 +56,7 @@ public class moodController {
     public void initdata(String userName) {
         this.username = userName;
         usernameLabel.setText(this.username);
+        average_mood.setText("Your average mood is: " + mood.averageMood(mood.getMoodClick(profile.getUserId(username))));
     }
 
     @FXML
@@ -109,4 +116,5 @@ public class moodController {
         stage.show();
         Logger.info("The mood is saved.");
     }
+
 }

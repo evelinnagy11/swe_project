@@ -3,10 +3,16 @@ package model;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
+import org.tinylog.Logger;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.sql.*;
+import java.util.List;
+import java.util.NoSuchElementException;
+
+import static java.lang.Double.NaN;
 
 public class moodHandler {
 
@@ -44,5 +50,43 @@ public class moodHandler {
             return true;
         } else {
             return false; }
+    }
+
+    public List<Integer> getMoodClick(int profile_id){
+        List<String> moods = mooddao.getMoodNames(profile_id);
+        List<Integer> mood_values = new ArrayList<Integer>();
+        for(String value : moods){
+            switch(value){
+                case "angry":
+                    mood_values.add(1);
+                    break;
+                case "sad":
+                    mood_values.add(2);
+                    break;
+                case "tired":
+                    mood_values.add(3);
+                    break;
+                case "happy":
+                    mood_values.add(4);
+                    break;
+                case "excited":
+                    mood_values.add(5);
+                    break;
+            }
+        }
+        return mood_values;
+    }
+
+    public double averageMood(List<Integer> moods){
+        double mood_avg = 0.0;
+
+        if(moods.size() != 0){
+            for(Integer mood : moods){
+                mood_avg += mood;
+            }
+            mood_avg /= moods.size();
+        }
+            return mood_avg;
+
     }
 }
