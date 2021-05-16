@@ -14,6 +14,9 @@ import javax.persistence.*;
 @Data
 public class dailyactivity {
 
+    /**
+     * The id of the daily activity row.
+     */
     @Id
     @Column(nullable = false)
     private int daily_id;

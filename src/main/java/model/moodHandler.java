@@ -3,17 +3,16 @@ package model;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
-import org.tinylog.Logger;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.sql.*;
 import java.util.List;
-import java.util.NoSuchElementException;
 
-import static java.lang.Double.NaN;
-
+/**
+ * It connects the moods.db to the moodController.
+ */
 public class moodHandler {
 
     Jdbi jdbi = Jdbi.create("jdbc:sqlite:moods.db")
@@ -22,12 +21,25 @@ public class moodHandler {
     moodDao mooddao = handle.attach(moodDao.class);
     profileHandler profilehandler = new profileHandler();
 
+
+    /**
+     * Initialize a new mood.
+     */
     public mood mood = new mood();
 
+    /**
+     * It creates the table.
+     */
     public moodHandler(){
         mooddao.createTable();
     }
 
+    /**
+     * The void saves the moods to the table of moods.
+     *
+     * @param mood_name The method pass the mood_name value to the table.
+     * @param username To get the profile_id from the profiles table.
+     */
     public void saveMoods(String mood_name, String username){
             int mood_id =  mooddao.listMoods().stream().mapToInt(mood::getMood_id).max().orElseThrow() + 1;
             int profile_id = profilehandler.getUserId(username);
@@ -35,12 +47,24 @@ public class moodHandler {
             mooddao.insertMood(mood_id, mood_name, profile_id, date);
     }
 
+    /**
+     * Calls the {@code isTodayDate} method and pass the {@code mood_date} variable to it.
+     *
+     * @param profile_id The method gets the date with profile_id.
+     * @return If the date is today, or not.
+     */
     public boolean isToday(int profile_id){
         long mood_date = mooddao.getDate(profile_id);
         boolean istoday = isTodayDate(mood_date);
         return istoday;
     }
 
+    /**
+     * Checks if the {@code mood_date} and the date of today are equal.
+     *
+     * @param mood_date That is the date that stores in the moods table.
+     * @return If the date equals today.
+     */
     public boolean isTodayDate(long mood_date){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date today = new Date(System.currentTimeMillis());
@@ -52,6 +76,12 @@ public class moodHandler {
             return false; }
     }
 
+    /**
+     * Convert a list of Strings to a list of ints.
+     *
+     * @param profile_id To get the list of the moods from moods table.
+     * @return A list of ints that represent the users' moods.
+     */
     public List<Integer> getMoodClick(int profile_id){
         List<String> moods = mooddao.getMoodNames(profile_id);
         List<Integer> mood_values = new ArrayList<Integer>();
@@ -77,6 +107,12 @@ public class moodHandler {
         return mood_values;
     }
 
+    /**
+     * Calculate the average mood of the logged in user.
+     *
+     * @param moods The method calculate from that list.
+     * @return A double that represent the users' average mood.
+     */
     public double averageMood(List<Integer> moods){
         double mood_avg = 0.0;
 

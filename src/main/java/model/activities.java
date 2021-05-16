@@ -14,6 +14,9 @@ import javax.persistence.*;
 @Data
 public class activities {
 
+    /**
+     * The id of the activity.
+     */
     @Id
     @Column(nullable = false)
     private int activity_id;

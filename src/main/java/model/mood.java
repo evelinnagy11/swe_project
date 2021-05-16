@@ -14,6 +14,13 @@ import javax.persistence.*;
 @Data
 public class mood {
 
+
+    /**
+     * Get the mood id from the mood.
+     *
+     * @param mood The copy of a mood.
+     * @return The mood id.
+     */
     public int getMood_id(mood mood) {
         return mood.mood_id;
     }

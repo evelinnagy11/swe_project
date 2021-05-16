@@ -47,7 +47,6 @@ public class activitiesController {
         this.username = userName;
         usernameLabel.setText(this.username);
         activeActivities.setItems(handler.AddtoList(usernameLabel.getText()));
-        //fillUpPieChart(username);
     }
 
     public void addActivity(ActionEvent actionEvent) {
@@ -125,14 +124,6 @@ public class activitiesController {
             });
         }
         Optional<Pair<String, Boolean>> result = dialog.showAndWait();
-    }
-
-    public void fillUpPieChart(String username){
-        piechart.setData( dailyhandler.fillPieChart(username));
-        piechart.setTitle("Done Activities");
-        piechart.setClockwise(true);
-        piechart.setLabelLineLength(50);
-        piechart.setLabelsVisible(true);
     }
 
 }

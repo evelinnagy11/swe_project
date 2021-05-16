@@ -14,6 +14,9 @@ import javax.persistence.*;
 @Data
 public class profile {
 
+    /**
+     * The id of the profile.
+     */
     @Id
     @Column(nullable = false)
     private int id;
@@ -23,6 +26,12 @@ public class profile {
      */
     private String username;
 
+    /**
+     * Get the id of the profile.
+     *
+     * @param profile A profile in the profiles table.
+     * @return The id of the profile.
+     */
     public int getId(profile profile) {
         return profile.id;
     }
